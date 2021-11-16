@@ -6,6 +6,8 @@ import { HomeComponent } from './home.component';
 import {ProductCardOneModule} from "../../shared/lazy-component/product-card-one/product-card-one.module";
 import {NgxPaginationModule} from "ngx-pagination";
 import {MaterialModule} from "../../material/material.module";
+// import {GridCardModule} from "../../shared/lagy-component/grid-card/grid-card.module";
+import {GridCardModule} from "../../shared/lazy-component/grid-card/grid-card.module";
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import {MaterialModule} from "../../material/material.module";
     HomeRoutingModule,
     ProductCardOneModule,
     NgxPaginationModule,
-    MaterialModule
+    MaterialModule,
+    GridCardModule,
+    GridCardModule
   ]
 })
 export class HomeModule { }

@@ -1,98 +1,113 @@
-import { Component, OnInit } from '@angular/core';
-import {Pagination} from "../../interfaces/pagination";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ProductService} from "../../services/product.service";
-import {CategoryService} from "../../services/category.service";
-import {MatDialog} from "@angular/material/dialog";
-import {Subscription} from "rxjs";
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ProductService} from '../../services/product.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {Pagination} from '../../interfaces/pagination';
+import {CategoryService} from 'src/app/services/category.service';
+import {Product} from '../../interfaces/product';
+import {ProductCategory} from '../../interfaces/product-category';
+
+import {NgxSpinnerService} from 'ngx-spinner';
+import {MatRadioChange} from '@angular/material/radio';
+import {BrandService} from '../../services/brand.service';
+import {ProductBrand} from '../../interfaces/product-brand';
+import {MatSliderChange} from '@angular/material/slider';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   // SUBSCRIPTION
-  querySubscribe: Subscription;
-  paramSubscribe: Subscription;
-  subDataOne: Subscription;
+  private subProduct ?: Subscription;
+  private subAcRoute ?: Subscription;
+  private subCat ?: Subscription;
 
-
-  attributes: any[] = [];
-  products: any[] = [];
-  tags: any[] = [];
 
   // View Type
   viewType = 'grid';
 
-  // Params
-  categorySlug: string = null;
-  subCategorySlug: string = null;
-  brandSlug: string = null;
-  brandId: string = null;
+  // Store Data
+  products: Product[] = [];
 
-  // Price Range
-  minPrice: number = null;
-  maxPrice: number = null;
-  rangeSet = false;
-  priceRange: { min: number; max: number } = {min: 0, max: 0};
-  minView = 0;
-  maxView = 0;
+  // Query
+  query: any = null;
 
   // Pagination
   currentPage = 1;
   totalProducts = 0;
-  productsPerPage = 12;
+  productsPerPage = 4;
+  // totalProductsStore = 0;
 
-  query: any[] = [];
-  query2: any[] = [];
-  query3: any[] = [];
-  // {
-  //   pageSize: this.productsPerPage,
-  //   currentPage: this.currentPage
-  // }
-  paginate: Pagination = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
-    private categoryService: CategoryService,
-    // private subCategoryService: SubCategoryService,
-    // private attributeService: AttributeService,
     private router: Router,
     public dialog: MatDialog,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
+    // GET PAGE FROM QUERY PARAM
+    this.subAcRoute = this.activatedRoute.queryParams.subscribe(qParam => {
+      if (qParam && qParam.page) {
+        this.currentPage = qParam.page;
+      } else {
+        this.currentPage = 1;
+      }
+      this.getAllProducts();
+    });
+
   }
 
-  private getAllProduct() {
+  /**
+   * HTTP REQ HANDLE
+   */
+
+  private getAllProducts() {
+    this.spinner.show();
+
     const pagination: Pagination = {
-      currentPage: String(this.currentPage),
-      pageSize: String(this.productsPerPage)
+      pageSize: this.productsPerPage.toString(),
+      currentPage: this.currentPage.toString()
     };
-    this.productService.getAllProducts(pagination)
-      .subscribe(res => {
-        this.products = res.data;
-        this.totalProducts = res.count;
-        // const min = res.priceRange.minPrice;
-        // const max = res.priceRange.maxPrice;
-        if (this.totalProducts > 0) {
-          this.priceRange.min = res.priceRange.minPrice;
-          this.priceRange.max = res.priceRange.maxPrice;
-          this.minView = res.priceRange.minPrice;
-          this.maxView = res.priceRange.maxPrice;
-        }
-        // console.log(this.products);
-      }, error => {
-        console.log(error);
-      });
+
+    const mQuery = {...{productVisibility: true}, ...this.query};
+
+    this.subProduct = this.productService.getAllProducts(pagination,mQuery).subscribe(res => {
+      this.products = res.data;
+      this.totalProducts = res.count;
+      // const min = res.priceRange.minPrice;
+      // const max = res.priceRange.maxPrice;
+      this.spinner.hide();
+    }, error => {
+      this.spinner.hide();
+      console.log(error);
+    });
   }
 
-  public onChangePage(event: number) {
+  /**
+   * PAGINATION CHANGE
+   */
+  public onPageChanged(event: any) {
     this.router.navigate([], {queryParams: {page: event}});
-    // this.router.navigate([], {queryParams: {page: 1}});
   }
 
+  ngOnDestroy() {
+
+    if (this.subAcRoute) {
+      this.subAcRoute.unsubscribe();
+    }
+    if (this.subProduct) {
+      this.subProduct.unsubscribe();
+    }
+    if (this.subCat) {
+      this.subCat.unsubscribe();
+    }
+  }
 }
