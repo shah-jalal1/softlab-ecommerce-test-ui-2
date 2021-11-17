@@ -12,7 +12,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-       // data: {preload: true, delay: false}
+       data: {preload: true, delay: false}
       },
   {
     path: 'login',
@@ -26,6 +26,11 @@ const routes: Routes = [
     loadChildren: () => import('./user/registration/registration.module').then(m => m.RegistrationModule),
     data: {preload: false, delay: false}
   },
+       {
+         path: ':brandSlug/:subCategorySlug/:slug',
+         loadChildren: () => import('./product-details/product-details.module').then(m => m.ProductDetailsModule),
+         data: {preload: true, delay: false}
+       },
   {
     path: 'account',
     canActivate: [UserAuthGuard],
