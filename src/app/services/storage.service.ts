@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {EncryptStorage} from 'encrypt-storage';
 import {CookieService} from 'ngx-cookie-service';
 import {DATABASE_KEY} from '../core/utils/global-variable';
-// import {RecommendedProductData} from '../interfaces/recommendedProductsData';
+import {RecommendedProductData} from '../interfaces/recommended-products-data';
 import {environment} from '../../environments/environment';
 
 // Encrypt
@@ -102,10 +102,10 @@ export class StorageService {
   //   localStorage.setItem(DATABASE_KEY.recommendedProduct, JSON.stringify(data));
   // }
 
-  // getViewedProductData() {
-  //   const data = localStorage.getItem(DATABASE_KEY.recommendedProduct);
-  //   return JSON.parse(data) as RecommendedProductData;
-  // }
+  getViewedProductData() {
+    const data = localStorage.getItem(DATABASE_KEY.recommendedProduct);
+    return JSON.parse(data) as RecommendedProductData;
+  }
 
   /**
    * COOKIE STORAGE

@@ -8,6 +8,10 @@ import {ProductCardOneModule} from "./lazy-component/product-card-one/product-ca
 import { CartViewDialogComponent } from './components/cart-view-dialog/cart-view-dialog.component';
 import { BottomSheetViewComponent } from './components/ui/bottom-sheet-view/bottom-sheet-view.component';
 import {GridCardModule} from "./lazy-component/grid-card/grid-card.module";
+import { BreadcrumbComponent } from './lazy-component/breadcrumb/breadcrumb.component';
+import {RouterModule} from "@angular/router";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {ProductCardTwoModule} from "./lazy-component/product-card-two/product-card-two.module";
 
 
 @NgModule({
@@ -16,13 +20,20 @@ import {GridCardModule} from "./lazy-component/grid-card/grid-card.module";
     SnackbarNotificationComponent,
     ConfirmDailogComponent,
     CartViewDialogComponent,
-    BottomSheetViewComponent
+    BottomSheetViewComponent,
+    BreadcrumbComponent
+  ],
+  exports: [
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
     PipesModule,
     ProductCardOneModule,
-    GridCardModule
+    ProductCardTwoModule,
+    GridCardModule,
+    RouterModule,
+    FlexLayoutModule
   ]
 })
 export class SharedModule { }
