@@ -26,7 +26,8 @@ const routes: Routes = [
     path: ':slug',
     loadChildren: () => import('./pages/product-details/product-details.module').then(m => m.ProductDetailsModule),
     data: {preload: true, delay: false}
-  }
+  },
+
 //   {
 //     path: '',
 //      component: PagesModule

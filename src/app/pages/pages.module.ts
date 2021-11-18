@@ -8,7 +8,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import { AccountComponent } from './user/account/account.component';
 import {MenuModule} from "../core/menu/menu.module";
-import {CartModule} from "./user/cart/cart.module";
+
 
 
 @NgModule({
@@ -23,7 +23,6 @@ import {CartModule} from "./user/cart/cart.module";
     MatFormFieldModule,
     MatIconModule,
     MenuModule,
-    CartModule,
 
   ]
 })

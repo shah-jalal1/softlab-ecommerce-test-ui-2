@@ -26,7 +26,8 @@ import {MenuModule} from "../../core/menu/menu.module";
 
 @NgModule({
   declarations: [
-    ProductDetailsComponent
+    ProductDetailsComponent,
+
   ],
     imports: [
         CommonModule,
@@ -45,7 +46,8 @@ import {MenuModule} from "../../core/menu/menu.module";
         SwiperModule,
         FlexLayoutModule,
         NgxSpinnerModule,
-        MenuModule
+        MenuModule,
+
     ]
 })
 export class ProductDetailsModule { }

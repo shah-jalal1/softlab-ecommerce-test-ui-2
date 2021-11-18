@@ -17,6 +17,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MaterialModule} from "./material/material.module";
 import {PagesModule} from "./admin/pages/pages.module";
 import {SharedModule} from './shared/shared.module';
+import {AuthAdminInterceptor} from "./auth-interceptor/auth-admin.interceptor";
 
 
 @NgModule({
@@ -40,7 +41,9 @@ import {SharedModule} from './shared/shared.module';
     SharedModule
   ],
   providers: [
+    // {provide: HTTP_INTERCEPTORS, useClass: ErrorHandleInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthUserInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthAdminInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
