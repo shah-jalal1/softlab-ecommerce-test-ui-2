@@ -133,6 +133,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.spinner.show();
     this.subDataOne = this.productService.getSingleProductBySlug(this.productSlug)
       .subscribe(res => {
+        console.log(res.data);
         this.spinner.hide();
         this.product = res.data;
         this.productPriceData = this.product.prices;

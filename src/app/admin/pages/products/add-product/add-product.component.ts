@@ -98,8 +98,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
   // public filteredTagsList: ProductTag[];
 
   // Hierarchy Attributes;
-  // categoryAttributes: ProductAttribute[] = [];
-  // subCategoryAttributes: ProductAttribute[] = [];
+  categoryAttributes: ProductAttribute[] = [];
+  subCategoryAttributes: ProductAttribute[] = [];
 
 
   // Selected Attributes
@@ -155,7 +155,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
     // GET ID FORM PARAM
     this.subRouteOne = this.activatedRoute.paramMap.subscribe((param) => {
       this.id = param.get('id');
-      console.log(this.id);
 
       if (this.id) {
         this.getSingleProductById();
@@ -163,7 +162,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
         // GET ALL SELECTED DATA
         this.getAllCategory();
         this.getAllBrands();
-        // this.getAllGenerics();
+        this.getAllGenerics();
         this.getAllUnitTypes();
         // this.getAllAttributes();
         // this.getAllTags();
@@ -382,7 +381,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
    */
 
   onSelectCategory(event: MatSelectChange) {
-    // this.categoryAttributes = this.categories.find(f => f._id === event.value).attributes as ProductAttribute[];
+    this.categoryAttributes = this.categories.find(f => f._id === event.value).attributes as ProductAttribute[];
     this.dataForm.patchValue({subCategory: null});
     // this.removeAttributesFormArray();
     this.getAllSubCategoryByCategoryId(event.value, true);

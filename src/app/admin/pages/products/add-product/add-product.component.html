@@ -84,52 +84,52 @@
               </mat-form-field>
             </div>
             <!--price-->
-<!--            <div>-->
-<!--              <mat-form-field appearance="outline">-->
-<!--                <mat-label>Price</mat-label>-->
-<!--                <input matInput placeholder="price" type="number" formControlName="price" required digitOnly>-->
-<!--                <mat-error></mat-error>-->
-<!--              </mat-form-field>-->
-<!--            </div>-->
+            <!--            <div>-->
+            <!--              <mat-form-field appearance="outline">-->
+            <!--                <mat-label>Price</mat-label>-->
+            <!--                <input matInput placeholder="price" type="number" formControlName="price" required digitOnly>-->
+            <!--                <mat-error></mat-error>-->
+            <!--              </mat-form-field>-->
+            <!--            </div>-->
             <!--discountType-->
-<!--            <div>-->
-<!--              <mat-form-field appearance="outline">-->
-<!--                <mat-label>Discount Type</mat-label>-->
-<!--                <mat-select formControlName="discountType">-->
-<!--                  <mat-option [value]="null">None</mat-option>-->
-<!--                  <mat-option *ngFor="let discount of discountType"-->
-<!--                              [value]="discount.value">{{discount.viewValue}}</mat-option>-->
-<!--                </mat-select>-->
-<!--              </mat-form-field>-->
-<!--            </div>-->
+            <!--            <div>-->
+            <!--              <mat-form-field appearance="outline">-->
+            <!--                <mat-label>Discount Type</mat-label>-->
+            <!--                <mat-select formControlName="discountType">-->
+            <!--                  <mat-option [value]="null">None</mat-option>-->
+            <!--                  <mat-option *ngFor="let discount of discountType"-->
+            <!--                              [value]="discount.value">{{discount.viewValue}}</mat-option>-->
+            <!--                </mat-select>-->
+            <!--              </mat-form-field>-->
+            <!--            </div>-->
             <!---discountAmount-->
-<!--            <div *ngIf="dataForm.value.discountType">-->
-<!--              <mat-form-field appearance="outline">-->
-<!--                <mat-label>Discount Amount</mat-label>-->
-<!--                <input matInput placeholder="price" type="number" formControlName="discountAmount" digitOnly>-->
-<!--                <mat-error></mat-error>-->
-<!--              </mat-form-field>-->
-<!--            </div>-->
+            <!--            <div *ngIf="dataForm.value.discountType">-->
+            <!--              <mat-form-field appearance="outline">-->
+            <!--                <mat-label>Discount Amount</mat-label>-->
+            <!--                <input matInput placeholder="price" type="number" formControlName="discountAmount" digitOnly>-->
+            <!--                <mat-error></mat-error>-->
+            <!--              </mat-form-field>-->
+            <!--            </div>-->
 
             <!---Stock Visibility-->
-<!--            <div>-->
-<!--              <mat-form-field appearance="outline">-->
-<!--                <mat-label>Stock Visibility</mat-label>-->
-<!--                <mat-select formControlName="stockVisibility">-->
-<!--                  <mat-option *ngFor="let data of stockVisibilities"-->
-<!--                              [value]="data.value">{{data.viewValue}}</mat-option>-->
-<!--                </mat-select>-->
-<!--              </mat-form-field>-->
-<!--            </div>-->
+            <!--            <div>-->
+            <!--              <mat-form-field appearance="outline">-->
+            <!--                <mat-label>Stock Visibility</mat-label>-->
+            <!--                <mat-select formControlName="stockVisibility">-->
+            <!--                  <mat-option *ngFor="let data of stockVisibilities"-->
+            <!--                              [value]="data.value">{{data.viewValue}}</mat-option>-->
+            <!--                </mat-select>-->
+            <!--              </mat-form-field>-->
+            <!--            </div>-->
 
             <!--quantity-->
-<!--            <div *ngIf="dataForm.value.stockVisibility">-->
-<!--              <mat-form-field appearance="outline">-->
-<!--                <mat-label>Quantity</mat-label>-->
-<!--                <input matInput placeholder="quantity" type="number" formControlName="quantity" digitOnly>-->
-<!--                <mat-error></mat-error>-->
-<!--              </mat-form-field>-->
-<!--            </div>-->
+            <!--            <div *ngIf="dataForm.value.stockVisibility">-->
+            <!--              <mat-form-field appearance="outline">-->
+            <!--                <mat-label>Quantity</mat-label>-->
+            <!--                <input matInput placeholder="quantity" type="number" formControlName="quantity" digitOnly>-->
+            <!--                <mat-error></mat-error>-->
+            <!--              </mat-form-field>-->
+            <!--            </div>-->
 
             <!--soldQuantity-->
             <!--            <div>-->
@@ -142,15 +142,15 @@
             <!--            </div>-->
 
             <!---Stock Visibility-->
-<!--            <div>-->
-<!--              <mat-form-field appearance="outline">-->
-<!--                <mat-label>EMI Options</mat-label>-->
-<!--                <mat-select multiple formControlName="emiStatus">-->
-<!--                  <mat-option *ngFor="let data of emiStatus"-->
-<!--                              [value]="data.value">{{data.viewValue}}</mat-option>-->
-<!--                </mat-select>-->
-<!--              </mat-form-field>-->
-<!--            </div>-->
+            <!--            <div>-->
+            <!--              <mat-form-field appearance="outline">-->
+            <!--                <mat-label>EMI Options</mat-label>-->
+            <!--                <mat-select multiple formControlName="emiStatus">-->
+            <!--                  <mat-option *ngFor="let data of emiStatus"-->
+            <!--                              [value]="data.value">{{data.viewValue}}</mat-option>-->
+            <!--                </mat-select>-->
+            <!--              </mat-form-field>-->
+            <!--            </div>-->
 
             <div>
               <mat-form-field appearance="outline">
@@ -171,9 +171,36 @@
               </mat-form-field>
             </div> <!-- END Category -->
 
+<!--            <div>-->
+<!--              <mat-form-field appearance="outline">-->
+<!--                <mat-label>Sub Category</mat-label>-->
+<!--                <mat-select [disableOptionCentering]="true" #select2 placeholder="Select sub category" required-->
+<!--                            (selectionChange)="onSelectSubCategory($event)"-->
+<!--                            formControlName="subCategory">-->
+<!--                  <mat-select-filter [placeholder]="'Filter Sub Category List'"-->
+<!--                                     *ngIf="select2.focused"-->
+<!--                                     [array]="subCategories"-->
+<!--                                     [displayMember]="'subCategoryName'"-->
+<!--                                     (filteredReturn)="filteredSubCatList = $event"></mat-select-filter>-->
+<!--                  <mat-option *ngFor="let cat of filteredSubCatList" [value]="cat._id">-->
+<!--                    {{cat.subCategoryName}}-->
+<!--                  </mat-option>-->
+<!--                </mat-select>-->
+<!--                <mat-error>This field is required</mat-error>-->
+<!--              </mat-form-field>-->
+<!--            </div> &lt;!&ndash; END Sub Category &ndash;&gt;-->
+
+            <!--            <div>-->
+            <!--              <mat-form-field appearance="outline">-->
+            <!--                <mat-label>Brand</mat-label>-->
+            <!--                <mat-select formControlName="brand">-->
+            <!--                  <mat-option *ngFor="let data of brands"-->
+            <!--                              [value]="data._id">{{data.brandName}}</mat-option>-->
+            <!--                </mat-select>-->
+            <!--              </mat-form-field>-->
+            <!--            </div>-->
+
             <div>
-
-
               <mat-form-field appearance="outline">
                 <mat-label>Brand</mat-label>
                 <mat-select [disableOptionCentering]="true" #select3 placeholder="Select brand" required
@@ -191,7 +218,23 @@
               </mat-form-field>
             </div> <!-- END Brand -->
 
-
+<!--            <div>-->
+<!--              <mat-form-field appearance="outline">-->
+<!--                <mat-label>Generic</mat-label>-->
+<!--                <mat-select [disableOptionCentering]="true" #selectGeneric placeholder="Select generic" required-->
+<!--                            formControlName="generic">-->
+<!--                  <mat-select-filter [placeholder]="'Filter generic List'"-->
+<!--                                     *ngIf="selectGeneric.focused"-->
+<!--                                     [array]="generics"-->
+<!--                                     [displayMember]="'name'"-->
+<!--                                     (filteredReturn)="filteredGenericList = $event"></mat-select-filter>-->
+<!--                  <mat-option *ngFor="let cat of filteredGenericList" [value]="cat._id">-->
+<!--                    {{cat.name}}-->
+<!--                  </mat-option>-->
+<!--                </mat-select>-->
+<!--                <mat-error>This field is required</mat-error>-->
+<!--              </mat-form-field>-->
+<!--            </div> &lt;!&ndash; END Brand &ndash;&gt;-->
 
             <!---ATTRIBUTE-->
             <!--            <div>-->
@@ -309,22 +352,22 @@
             <!--              </mat-select>-->
             <!--            </mat-form-field>-->
 
-<!--            <mat-form-field appearance="outline" class="w-100">-->
-<!--              <mat-label>Tags</mat-label>-->
-<!--              <mat-select [disableOptionCentering]="true" #selectTags placeholder="Select tags"-->
-<!--                          multiple-->
-<!--                          formControlName="tags">-->
-<!--                <mat-select-filter [placeholder]="'Filter tags'"-->
-<!--                                   *ngIf="selectTags.focused"-->
-<!--                                   [array]="tags"-->
-<!--                                   [displayMember]="'tagName'"-->
-<!--                                   (filteredReturn)="filteredTagsList = $event"></mat-select-filter>-->
-<!--                <mat-option *ngFor="let cat of filteredTagsList" [value]="cat._id">-->
-<!--                  {{cat.tagName}}-->
-<!--                </mat-option>-->
-<!--              </mat-select>-->
-<!--              <mat-error>This field is required</mat-error>-->
-<!--            </mat-form-field>-->
+            <!--            <mat-form-field appearance="outline" class="w-100">-->
+            <!--              <mat-label>Tags</mat-label>-->
+            <!--              <mat-select [disableOptionCentering]="true" #selectTags placeholder="Select tags"-->
+            <!--                          multiple-->
+            <!--                          formControlName="tags">-->
+            <!--                <mat-select-filter [placeholder]="'Filter tags'"-->
+            <!--                                   *ngIf="selectTags.focused"-->
+            <!--                                   [array]="tags"-->
+            <!--                                   [displayMember]="'tagName'"-->
+            <!--                                   (filteredReturn)="filteredTagsList = $event"></mat-select-filter>-->
+            <!--                <mat-option *ngFor="let cat of filteredTagsList" [value]="cat._id">-->
+            <!--                  {{cat.tagName}}-->
+            <!--                </mat-option>-->
+            <!--              </mat-select>-->
+            <!--              <mat-error>This field is required</mat-error>-->
+            <!--            </mat-form-field>-->
 
 
             <!---Product Visibility-->
@@ -339,26 +382,26 @@
 
           </div>
 
-<!--          <div fxLayout="row" fxLayoutGap="10px" class="d-flex">-->
-<!--            <mat-form-field appearance="outline" (click)="startDate.open()" class="w-100">-->
-<!--              <mat-label>Campaign Start Date</mat-label>-->
-<!--              <input readonly [matDatepicker]="startDate" formControlName="campaignStartDate" matInput-->
-<!--                     placeholder="Enter campaign Start Date">-->
-<!--              <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>-->
-<!--              <mat-datepicker #startDate></mat-datepicker>-->
-<!--              <mat-error>This field is required</mat-error>-->
-<!--            </mat-form-field>-->
+          <!--          <div fxLayout="row" fxLayoutGap="10px" class="d-flex">-->
+          <!--            <mat-form-field appearance="outline" (click)="startDate.open()" class="w-100">-->
+          <!--              <mat-label>Campaign Start Date</mat-label>-->
+          <!--              <input readonly [matDatepicker]="startDate" formControlName="campaignStartDate" matInput-->
+          <!--                     placeholder="Enter campaign Start Date">-->
+          <!--              <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>-->
+          <!--              <mat-datepicker #startDate></mat-datepicker>-->
+          <!--              <mat-error>This field is required</mat-error>-->
+          <!--            </mat-form-field>-->
 
-<!--            <mat-form-field appearance="outline" (click)="expiryDate.open()" class="w-100">-->
-<!--              <mat-label>Campaign End Date</mat-label>-->
-<!--              <input readonly [matDatepicker]="expiryDate" formControlName="campaignEndDate" matInput-->
-<!--                     placeholder="Enter campaign End Date">-->
-<!--              <mat-datepicker-toggle matSuffix [for]="expiryDate"></mat-datepicker-toggle>-->
-<!--              <mat-datepicker #expiryDate></mat-datepicker>-->
-<!--              <mat-error>This field is required</mat-error>-->
-<!--            </mat-form-field>-->
+          <!--            <mat-form-field appearance="outline" (click)="expiryDate.open()" class="w-100">-->
+          <!--              <mat-label>Campaign End Date</mat-label>-->
+          <!--              <input readonly [matDatepicker]="expiryDate" formControlName="campaignEndDate" matInput-->
+          <!--                     placeholder="Enter campaign End Date">-->
+          <!--              <mat-datepicker-toggle matSuffix [for]="expiryDate"></mat-datepicker-toggle>-->
+          <!--              <mat-datepicker #expiryDate></mat-datepicker>-->
+          <!--              <mat-error>This field is required</mat-error>-->
+          <!--            </mat-form-field>-->
 
-<!--          </div>-->
+          <!--          </div>-->
 
           <!--description-->
           <!--          <div class="feathures">-->
@@ -409,12 +452,12 @@
           <!--                            [config]="textEditorCtrService.shortDescConfig"></angular-editor>-->
           <!--          </div>-->
 
-<!--          <div class="editor warranty-service" style="margin-bottom: 10px;">-->
-<!--            <label>Enter product warranty policy</label>-->
-<!--            <ngx-editor-menu [editor]="editorWarrantyPolicy"></ngx-editor-menu>-->
-<!--            <ngx-editor [editor]="editorWarrantyPolicy" placeholder="Enter Warranty Policy"-->
-<!--                        formControlName="warrantyPolicy" outputFormat="html"></ngx-editor>-->
-<!--          </div>-->
+          <!--          <div class="editor warranty-service" style="margin-bottom: 10px;">-->
+          <!--            <label>Enter product warranty policy</label>-->
+          <!--            <ngx-editor-menu [editor]="editorWarrantyPolicy"></ngx-editor-menu>-->
+          <!--            <ngx-editor [editor]="editorWarrantyPolicy" placeholder="Enter Warranty Policy"-->
+          <!--                        formControlName="warrantyPolicy" outputFormat="html"></ngx-editor>-->
+          <!--          </div>-->
 
 
           <!--          <div class="w-100" style="margin-bottom: 16px;">-->
@@ -431,12 +474,12 @@
           <!--                            [config]="textEditorCtrService.shortDescConfig"></angular-editor>-->
           <!--          </div>-->
 
-<!--          <div class="editor warranty-service" style="margin-bottom: 10px;">-->
-<!--            <label>Enter product warranty services</label>-->
-<!--            <ngx-editor-menu [editor]="editorWarrantyService"></ngx-editor-menu>-->
-<!--            <ngx-editor [editor]="editorWarrantyService" placeholder="Enter product warranty services"-->
-<!--                        formControlName="warrantyServices" outputFormat="html"></ngx-editor>-->
-<!--          </div>-->
+          <!--          <div class="editor warranty-service" style="margin-bottom: 10px;">-->
+          <!--            <label>Enter product warranty services</label>-->
+          <!--            <ngx-editor-menu [editor]="editorWarrantyService"></ngx-editor-menu>-->
+          <!--            <ngx-editor [editor]="editorWarrantyService" placeholder="Enter product warranty services"-->
+          <!--                        formControlName="warrantyServices" outputFormat="html"></ngx-editor>-->
+          <!--          </div>-->
 
 
           <!--          <div class="editor short-desc" style="margin-bottom: 10px;">-->
@@ -459,12 +502,12 @@
           <!--                            [config]="textEditorCtrService.shortDescConfig"></angular-editor>-->
           <!--          </div>-->
 
-<!--          <div class="editor warranty-service" style="margin-bottom: 10px;">-->
-<!--            <label>Enter product short description</label>-->
-<!--            <ngx-editor-menu [editor]="editorShortDescription"></ngx-editor-menu>-->
-<!--            <ngx-editor [editor]="editorShortDescription" placeholder="Enter product short description"-->
-<!--                        formControlName="shortDescription" outputFormat="html"></ngx-editor>-->
-<!--          </div>-->
+          <!--          <div class="editor warranty-service" style="margin-bottom: 10px;">-->
+          <!--            <label>Enter product short description</label>-->
+          <!--            <ngx-editor-menu [editor]="editorShortDescription"></ngx-editor-menu>-->
+          <!--            <ngx-editor [editor]="editorShortDescription" placeholder="Enter product short description"-->
+          <!--                        formControlName="shortDescription" outputFormat="html"></ngx-editor>-->
+          <!--          </div>-->
 
 
           <div class="editor">

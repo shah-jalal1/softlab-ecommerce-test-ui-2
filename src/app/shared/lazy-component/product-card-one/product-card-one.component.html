@@ -1,60 +1,30 @@
+<!---card-->
 <div class="card">
-  <!--** card-img ***-->
+  <!--card-img-->
   <div class="card-img">
-    <!-- <a [routerLink]="['/product-details', product?.productSlug]"> -->
     <a [routerLink]="['/', product?.brandSlug, product?.categorySlug, product?.productSlug]">
-      <img [defaultImage]="'/assets/images/placeholder/test.png'" [lazyLoad]="product.images[0]"
-           [alt]="product?.productName"></a>
-    <!--** card-hover-img **-->
-    <div class="card-hover-img" *ngIf="product?.images && product?.images.length > 1">
-      <!-- <a [routerLink]="['/product-details', product?.productSlug]"> -->
-      <a [routerLink]="['/', product?.brandSlug, product?.categorySlug, product?.productSlug]">
-        <img [src]="product?.images[1]"
-             [alt]="product?.productName"></a>
-    </div>
-    <!--** discount-area **-->
-    <span fxHide [fxShow]="product?.discountAmount && product?.discountAmount > 0" class="discount">-{{product ? (product | discount: 'percentage' | number: '': 'bn') : 0}}%</span>
-    <span fxHide [fxShow]="product?.quantity <= 0" class="out-stock">Stock Out</span>
+      <!-- <img [defaultImage]="'/assets/images/placeholder/test.png'" [lazyLoad]="product?.images[0]"> -->
+      <!-- <img src={{product.images[0]}} /> -->
+    </a>
   </div>
-  <!--** card-body-area **-->
+  <!--card-body-area-->
   <div class="card-body">
-    <!--** card-rating **-->
-    <!--    <div class="card-rating">-->
-    <!--      <ul>-->
-    <!--        <li><i class="fa fa-star"></i></li>-->
-    <!--        <li><i class="fa fa-star"></i></li>-->
-    <!--        <li><i class="fa fa-star"></i></li>-->
-    <!--        <li><i class="fa fa-star"></i></li>-->
-    <!--        <li><i class="fa fa-star"></i></li>-->
-    <!--      </ul>-->
-    <!--    </div>-->
-    <!--** Card-discription**-->
-    <div class="card-link">
-      <!-- <a [routerLink]="['/product-details', product?.productSlug]">{{product?.productName}}</a> -->
-      <a [routerLink]="['/', product?.brandSlug, product?.categorySlug, product?.productSlug]">{{product?.productName}}</a>
-      <span class="company-name">Square Pharmace...</span>
-    </div>
-    <!--** price-and-Icon-menu ***-->
-    <div class="price-icon">
-      <!--** price **-->
-      <div class="card-price">
-        <h3 class="main-price"><span>৳</span>{{product | price: 'priceWithDiscount' | number: '': 'bn'}}
-          <del *ngIf="product?.discountAmount && product?.discountAmount > 0" class="save"> <small>৳</small>{{product?.price | number: '': 'bn'}}</del>
-        </h3>
-      </div>
-      <!--** Card-icon_menu **-->
-      <!--      <div class="card-icon-menu">-->
-      <!--        <ul>-->
-      <!--          <li [fxHide]="product?.quantity <= 0"><a (click)="addToCart($event)"><i class="fas fa-shopping-cart"></i></a></li>-->
-      <!--          <li><a (click)="openComponentDialog({viewProduct: product})"><i class="fa fa-eye"></i></a></li>-->
-      <!--          <li><a *ngIf="ifLoggedIn()"-->
-      <!--                 color="accent"-->
-      <!--                 class="btn-wishlist"-->
-      <!--                 (click)="addToWishlistItemAfterCheck()"><i class="fa fa-heart"></i></a></li>-->
-      <!--&lt;!&ndash;          <li><a href="#"><i class="fa fa-clone"></i></a></li>&ndash;&gt;-->
-
-      <!--        </ul>-->
-      <!--      </div>-->
-    </div>
+   <!---card-title-->
+   <div class="card-title">
+    <a [routerLink]="['/', product?.productSlug]">{{product?.productName}}</a>
+     <!-- <span>{{product?.generic?.name}}</span> -->
+   </div>
+   <!--card-bottom-->
+   <div class="card-bottom">
+     <!--card-price-->
+     <div class="card-price">
+       <h4 *ngIf="product && product.price > 0">MRP <del>৳ {{product?.price}}</del> <span> {{product ? (product.discountType) : 0}}% OFF</span></h4>
+       <!-- <h3>৳{{product.prices[0]}}</h3> -->
+     </div>
+     <!--add-btn-->
+     <div class="add-btn">
+       <a [routerLink]="['/', product?.brandSlug, product?.categorySlug, product?.productSlug]">Details</a>
+     </div>
+   </div>
   </div>
 </div>

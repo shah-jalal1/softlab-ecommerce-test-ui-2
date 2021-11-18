@@ -15,6 +15,7 @@ import {PipesModule} from '../../shared/pipes/pipes.module';
 import {BreadcrumbModule} from '../../shared/lazy-component/breadcrumb/breadcrumb.module';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {MenuModule} from "../../core/menu/menu.module";
 // import {ShareButtonsModule} from 'ngx-sharebuttons/buttons';
 // import {ShareIconsModule} from 'ngx-sharebuttons/icons';
 // import { DiscussionFormComponent } from './discussion/discussion-form/discussion-form.component';
@@ -27,23 +28,24 @@ import {NgxSpinnerModule} from "ngx-spinner";
   declarations: [
     ProductDetailsComponent
   ],
-  imports: [
-    CommonModule,
-    ProductDetailsRoutingModule,
-    MaterialModule,
-    SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ProductCardTwoModule,
-    // StarRatingModule,
-    ProductCardOneModule,
-    PipesModule,
-    BreadcrumbModule,
-    // ShareButtonsModule,
-    // ShareIconsModule,
-    SwiperModule,
-    FlexLayoutModule,
-    NgxSpinnerModule
-  ]
+    imports: [
+        CommonModule,
+        ProductDetailsRoutingModule,
+        MaterialModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ProductCardTwoModule,
+        // StarRatingModule,
+        ProductCardOneModule,
+        PipesModule,
+        BreadcrumbModule,
+        // ShareButtonsModule,
+        // ShareIconsModule,
+        SwiperModule,
+        FlexLayoutModule,
+        NgxSpinnerModule,
+        MenuModule
+    ]
 })
 export class ProductDetailsModule { }

@@ -21,6 +21,11 @@ const routes: Routes = [
     path: environment.adminBaseUrl,
     canActivate: [AdminAuthGuard],
     loadChildren: () => import('./admin/pages/pages.module').then(m => m.PagesModule)
+  },
+  {
+    path: ':slug',
+    loadChildren: () => import('./pages/product-details/product-details.module').then(m => m.ProductDetailsModule),
+    data: {preload: true, delay: false}
   }
 //   {
 //     path: '',
