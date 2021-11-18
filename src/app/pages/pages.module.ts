@@ -8,13 +8,17 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import { AccountComponent } from './user/account/account.component';
 import {MenuModule} from "../core/menu/menu.module";
+import { ImageCropComponent } from './user/image-crop/image-crop.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {ImageCropperModule} from "ngx-image-cropper";
 
 
 
 @NgModule({
   declarations: [
     PagesComponent,
-    AccountComponent
+    AccountComponent,
+    ImageCropComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +27,8 @@ import {MenuModule} from "../core/menu/menu.module";
     MatFormFieldModule,
     MatIconModule,
     MenuModule,
+    MatProgressSpinnerModule,
+    ImageCropperModule,
 
   ]
 })
