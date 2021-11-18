@@ -1,16 +1,5 @@
-<app-header>
-
-</app-header>
-
-
-<div class="breadcrumb">
-  <app-breadcrumb [data]="breadcrumbs"></app-breadcrumb>
-</div>
-<!---***** Products-Details *********-->
-
 <section class="product-details">
   <div class="container">
-
     <!--******* details-main-area *****-->
     <div class="product-details-main">
       <!--**** product-img ***-->
@@ -22,11 +11,8 @@
                (mousemove)="onMouseMove($event)"
                (mouseleave)="onMouseLeave($event)">
           <div class="product-discount">
-            <div class="discount" fxHide [fxShow]="product?.discountAmount && product?.discountAmount > 0">
-              <span>-{{product ? (product | discount: 'percentage' | number: '': 'bn') : 0}}%</span>
-            </div>
-            <div class="out-stock" fxHide [fxShow]="product?.quantity <= 0">
-              <span>Stock Out</span>
+            <div class="discount">
+              <span>-{{product ? product?.discountType : 0}}%</span>
             </div>
           </div>
         </div>
@@ -35,20 +21,15 @@
 
           <swiper [slidesPerView]="1"
                   [autoplay]="{
-            delay: 4000,
-            disableOnInteraction:false
-          }"
+              delay: 4000,
+              disableOnInteraction:false
+            }"
                   [breakpoints]="{
-            '0':{
-              slidesPerView: 3,
-              spaceBetween: 15
-            },
-            '500': {
-              slidesPerView: 4,
-              spaceBetween: 20
-            }
-
-          }"
+              '0':{
+                slidesPerView: 3,
+                spaceBetween: 15
+              }
+            }"
                   [navigation]="true"
                   class="mySwiper small-carousel"
           >
@@ -75,340 +56,75 @@
         <div class="product-title">
           <h2>{{product?.productName}}</h2>
         </div>
-
-        <!--- Product-serial-no -->
-        <div class="product-no">
-          <h3>SKU: <span>{{product?.sku}}</span></h3>
-        </div>
-
-        <!-- Product-categori -->
-        <div class="product-categori">
-          <h3>Categories: <a [routerLink]="['/product-list', product?.categorySlug]">
-            {{product?.category?.categoryName}}
-          </a>
-          </h3>
-        </div>
-
-        <!--Campaign-->
-        <!--        <div class="">-->
-        <!--          <p>{{product?.campaignStartDate | date}}</p>-->
-        <!--          <p>{{product?.campaignEndDate | date}}</p>-->
-        <!--        </div>-->
-
-        <!-- Product-tag -->
-
-        <div class="product-tag">
-          <h3>Generic:
-            <a href="javascript:" >
-              {{product?.generic?.name}}
-            </a>
-          </h3>
-        </div>
-
-        <!-- Product-price -->
+        <!--product-price-->
         <div class="product-price">
-          <h3 [fxShow]="selectedPriceData?.discountAmount && selectedPriceData?.discountAmount > 0">
-            <del>৳{{selectedPriceData?.price | number: '': 'bn'}}</del>
-            ৳{{selectedPriceData? (selectedPriceData | priceData: 'priceWithDiscount' | number: '': 'bn') : 0}}
-          </h3>
-          <h3 [fxHide]="selectedPriceData?.discountAmount && selectedPriceData?.discountAmount > 0">
-            ৳{{selectedPriceData?.price | number: '': 'bn'}}
-          </h3>
+          <!--discount-->
+          <!-- [fxShow]="selectedPriceData?.discountAmount && selectedPriceData?.discountAmount > 0" -->
+          <div class="cart-product-discount" >
+            <span>MRP <del>৳{{product?.price}}</del> <strong> {{product ? product?.discountType : 0}}% OFF</strong></span>
+          </div>
         </div>
 
-        <!-- Product-description -->
-        <div class="product-discription">
-          <ul>
-            <li><img src="/assets/images/product-details-icon/location.svg" alt=""><span>Home Delivery</span></li>
-            <li><img src="/assets/images/product-details-icon/checkmark-1.svg" alt=""><span>100% Authentic</span></li>
-            <li><img src="/assets/images/product-details-icon/checkmark-1.svg" alt=""><span>14 Days Easy Return</span></li>
-            <!--            <li><img src="/assets/images/product-details-icon/location.svg" alt=""><span>Warranty not Available</span></li>-->
-            <li><img src="/assets/images/product-details-icon/checkmark-1.svg" alt=""><span>Cash on Delivery</span></li>
-
-          </ul>
-        </div>
-
-        <div class="unit-type-view">
-          <mat-radio-group
-            class="unit-radio-group"
-            [(ngModel)]="selectedPriceData">
-            <mat-radio-button class="unit-radio-button"
-                              *ngFor="let data of product?.prices"
-                              [value]="data"
-                              (change)="onPriceDataSelect($event)"
-            >
-              <span>{{data?.unit?.name}}</span>
-            </mat-radio-button>
-          </mat-radio-group>
-        </div>
 
         <!-- Product-aad-and- item value-area  -->
         <div class="product-btn">
-          <div class="item-btn">
-            <div id="mines" (click)="decrementQty()">
-              <button>-</button>
-            </div>
-            <div id="value">
-              <input type="text" [value]="selectedQty">
-            </div>
-            <div id="plus" (click)="incrementQty()">
-              <button>+</button>
-            </div>
+          <!--          <div class="add-btn" *ngIf="!existsInCart">-->
+          <!--            <a mat-button (click)="addToCart()">ADD TO CART</a>-->
+          <!--          </div>-->
+          <!--          <div class="add-btn" *ngIf="existsInCart">-->
+          <!--            <a mat-button routerLink="/cart">Go TO CART</a>-->
+          <!--          </div>-->
+          <div class="add-btn">
+            <a mat-button>ADD TO CART</a>
           </div>
-          <div class="add-btn" *ngIf="!existsInCart">
-            <a mat-button (click)="addToCart()">ADD TO CART</a>
-          </div>
-          <div class="add-btn" *ngIf="existsInCart">
-            <a mat-button routerLink="/cart">Go TO CART</a>
-          </div>
-          <!-- Product-add-wishlist-area -->
-
-          <div class="add-wishlist">
-            <a *ngIf="ifLoggedIn()"
-               mat-button
-               class="btn-wishlist"
-               (click)="addToWishlistItemAfterCheck()">
-              <span> <i class="fa fa-heart"></i></span> Add To Wishlist</a>
+          <!-- Product-aad-and- item value-area  -->
+          <div class="add-btn">
+            <a mat-button>Buy Now</a>
           </div>
         </div>
-
-
-
-        <!-- Product-social-link -->
-
-        <div class="share-area">
-          <div class="share">
-<!--            <share-buttons-->
-<!--              [theme]="'default'"-->
-<!--              [include]="['facebook','twitter','linkedin']"-->
-<!--              [show]="4"-->
-<!--              [size]="-3"-->
-<!--              [url]="'https://esquireelectronicsltd.com/' + router.url"-->
-<!--              [image]="product?.images[0]"-->
-<!--              [title]="product?.productName"-->
-<!--              [autoSetMeta]="false"-->
-<!--              [description]="product?.category?.categoryName"-->
-<!--            ></share-buttons>-->
+      </div>
+      <!---product-other-details-area-->
+      <div class="product-other-details-area">
+        <!-- Product-description -->
+        <div class="product-discription">
+          <!---delivery-title-->
+          <div class="delivery-title">
+            <h3>Delivery Option</h3>
           </div>
-          <!--          <ul>-->
-          <!--            <li class="change-width1"><a href="javascript:"><img src="/assets/images/junk/linkedin.svg" alt=""-->
-          <!--                                                                       class="change-width"></a></li>-->
-          <!--            <li class="change-width1"><a href="javascript:"><img src="/assets/images/junk/instagram.svg" alt=""-->
-          <!--                                                                       class="change-width"></a></li>-->
-          <!--            <li class="change-width1"><a href="javascript:"><img src="/assets/images/junk/facebook.svg" alt=""-->
-          <!--                                                                       class="change-width"></a></li>-->
-          <!--          </ul>-->
+          <ul>
+            <li><i class="fa fa-check-circle"></i><span>Home Delivery</span></li>
+            <li><i class="fa fa-check-circle"></i><span>100% Authentic</span></li>
+            <li><i class="fa fa-check-circle"></i><span>14 Days Easy Return</span></li>
+            <li><i class="fa fa-check-circle"></i><span>Warranty not Available</span></li>
+            <li><i class="fa fa-check-circle"></i><span>Cash on Delivery</span></li>
+          </ul>
         </div>
-
-        <!---product-policy-area -->
-        <div class="product-policy-area">
-          <div class="policy-menu">
-            <ul>
-              <li><a class="no-select" (click)="viewPolicy = 'delivery'" [ngClass]="{'active' : viewPolicy === 'delivery'}">Delivery Policies</a></li>
-              <li><a class="no-select" (click)="viewPolicy = 'payment'" [ngClass]="{'active' : viewPolicy === 'payment'}">Payment Policies</a></li>
-              <!--              <li><a class="no-select" (click)="viewPolicy = 'warranty'" [ngClass]="{'active' : viewPolicy === 'warranty'}">Warranty Policies</a></li>-->
-            </ul>
-          </div>
-          <div class="dv-details" [ngSwitch]="viewPolicy">
-            <div *ngSwitchCase="'delivery'" [innerHTML]="product?.deliveryPolicy | safeHtmlCustom"></div>
-            <div *ngSwitchCase="'payment'"  [innerHTML]="product?.paymentPolicy | safeHtmlCustom"></div>
-            <!--            <div *ngSwitchCase="'warranty'"  [innerHTML]="product?.warrantyPolicy | safeHtmlCustom"></div>-->
-          </div>
+        <!---alternative-btn-->
+        <div class="alternative-btn">
+          <a routerLink="/coming-soon">alternative brands</a>
         </div>
-
 
       </div>
+    </div>
+  </div>
+</section>
 
+<!---section-1-->
+<section class="section-1">
+  <div class="container">
+    <!--section1-main--->
+    <div class="section1-main">
+      <!--section1-left-->
+      <div class="section1-left">
+        <!--section1-description-->
+        <div class="section1-description">
+          <h3>Description</h3>
+        </div>
+        <div class="description" [innerHTML]="product?.description"></div>
+
+      </div>
     </div>
   </div>
 </section>
 
 
-
-<section class="product-review-area">
-  <div class="container">
-
-    <div class="product-review-main-area">
-      <!---**** review-menu ***-->
-      <div class="product-review-menu">
-        <ul>
-          <li><a class="no-select" (click)="viewContainer = 'desc'" [ngClass]="{'active' : viewContainer === 'desc'}">Description </a></li>
-<!--          <li><a class="no-select" (click)="viewContainer = 'review'" [ngClass]="{'active' : viewContainer === 'review'}">Reviews ({{allReviews.length}})</a></li>-->
-        </ul>
-      </div> <!-- END NAV BAR -->
-
-      <ng-container [ngSwitch]="viewContainer">
-        <ng-container *ngSwitchCase="'desc'">
-          <div class="description" [innerHTML]="product?.description | safeHtmlCustom"></div>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'specification'">
-          <div class="specification">
-            <div class="table">
-              <table>
-                <tr *ngFor="let d of product?.filterData">
-                  <th>{{d?.attributeName}}</th>
-                  <td>{{d?.attributeValues}}</td>
-                </tr>
-              </table>
-            </div>
-          </div><!-- END Specifications -->
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'warranty'">
-          <div class="description" [innerHTML]="product?.warrantyServices | safeHtmlCustom"></div>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'review'">
-          <div class="review-area">
-
-            <div class="add-review-area">
-              <app-rating-and-review [productId]="product?._id" [pageUrl]="router.url"></app-rating-and-review>
-              <div class="line"></div>
-            </div>
-
-            <!--** review-title **-->
-            <!--            <div class="reviews-title">-->
-            <!--              <h2>LEWEL Girl's Cotton Color block Hooded T-Shirt</h2>-->
-            <!--            </div>-->
-
-            <!--******************* user-and-Esquare-review-area-start **********-->
-
-<!--            <div class="user-and-Esquare-review-area" *ngFor="let data of allReviews">-->
-<!--              &lt;!&ndash;******* user-review-main *******&ndash;&gt;-->
-<!--              <div class="user-review">-->
-
-<!--                &lt;!&ndash;** user-img ***&ndash;&gt;-->
-<!--                <div class="user-img">-->
-<!--                  <img [src]="data.user?.profileImg ? data.user?.profileImg : '/assets/images/avatar/user-cmnt.png'" [alt]="data.user?.fullName">-->
-<!--                </div>-->
-
-<!--                &lt;!&ndash;*** user-comment **&ndash;&gt;-->
-<!--                <div class="user-comment clearfix">-->
-<!--                  <div style="margin-bottom: 10px;" class="clearfix">-->
-<!--                    <div class="user-name">-->
-<!--                      <h3 class="Name">{{data.user?.fullName}} <span>– {{data.reviewDate | date :'fullDate'}}</span></h3>-->
-<!--                    </div>-->
-<!--                    <div class="user-rating">-->
-<!--                      <ul>-->
-<!--                        <li><i class="fa fa-star"></i></li>-->
-<!--                        <li><i class="fa fa-star"></i></li>-->
-<!--                        <li><i class="fa fa-star"></i></li>-->
-<!--                        <li><i class="fa fa-star"></i></li>-->
-<!--                        <li><i class="fa fa-star"></i></li>-->
-<!--                      </ul>-->
-<!--                    </div>-->
-<!--                  </div>&lt;!&ndash;*** user-comment-end**&ndash;&gt;-->
-<!--                  <div class="comment">-->
-<!--                    <p>{{data?.review}}</p>-->
-<!--                  </div>-->
-
-<!--                </div>-->
-<!--              </div>-->
-
-<!--              &lt;!&ndash;ans-area&ndash;&gt;-->
-<!--              <div class="e-square-ans" *ngIf="data.reply">-->
-<!--                &lt;!&ndash;*** user-review ***&ndash;&gt;-->
-<!--                <div class="user-review">-->
-
-<!--                  &lt;!&ndash;** user-img ***&ndash;&gt;-->
-<!--                  <div class="user-img">-->
-<!--                    <img src="/assets/images/junk/e-logo.png" alt="e-logo.png">-->
-<!--                  </div>-->
-
-<!--                  &lt;!&ndash;*** user-comment **&ndash;&gt;-->
-<!--                  <div class="user-comment clearfix">-->
-<!--                    <div style="margin-bottom: 10px;">-->
-<!--                      <div class="user-name e-square-title">-->
-<!--                        <h3 class="Name">ESQUIRE ELECTRONICS LTD <span>– {{data?.reviewDate | date: 'fullDate'}}</span></h3>-->
-<!--                      </div>-->
-<!--                    </div>&lt;!&ndash;*** user-comment-end**&ndash;&gt;-->
-<!--                    <div class="comment">-->
-<!--                      <p>{{data.reply}}</p>-->
-<!--                    </div>-->
-
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div> &lt;!&ndash;******************* user-and-Esquare-review-area-end  *********&ndash;&gt;-->
-
-
-          </div><!---END Review-->
-        </ng-container>
-
-<!--        <ng-container *ngSwitchCase="'discussions'">-->
-<!--          <div class="discussion">-->
-<!--            <div class="discussion-details">-->
-<!--              &lt;!&ndash;**** discussion-title *******&ndash;&gt;-->
-<!--              <div class="discussion-title">-->
-<!--                <h2>Got something to discuss?</h2>-->
-<!--              </div>-->
-<!--              &lt;!&ndash;********** discussion-form-area *********&ndash;&gt;-->
-<!--              <app-discussion-form [user]="user" (onSubmitForm)="onSubmitDiscussion($event)"></app-discussion-form>-->
-
-<!--              <app-discussion-item *ngFor="let data of allDiscussions" [discussion]="data" [user]="user"></app-discussion-item>-->
-<!--            </div>-->
-<!--          </div>&lt;!&ndash;&#45;&#45;END Discussion&ndash;&gt;-->
-<!--        </ng-container>-->
-      </ng-container>
-
-
-    </div>
-  </div>
-</section><!----END PRODUCT BOTTOM-->
-
-
-<section class="section-2 section-recommended section-md">
-  <div class="container">
-
-    <div class="deal-title">
-      <h2>Related Products</h2>
-      <div class="line"></div>
-    </div>
-
-    <div class="wrap-content">
-      <swiper [slidesPerView]="1"
-              [breakpoints]="{
-        '0':{
-          slidesPerView: 2,
-          spaceBetween: 15
-        },
-        '500': {
-          slidesPerView: 2.5,
-          spaceBetween: 20
-        },
-        '600':{
-          slidesPerView: 3,
-          spaceBetween: 20
-        },
-        '750':{
-          slidesPerView: 3.5,
-          spaceBetween: 20
-        },
-        '850':{
-          slidesPerView: 4,
-          spaceBetween: 20
-        },
-        '1100':{
-          slidesPerView: 5,
-          spaceBetween: 20
-        }
-      }"
-              [navigation]="true"
-              class="mySwiper related-product-carousel"
-      >
-        <ng-template swiperSlide *ngFor="let data of relatedProducts">
-          <app-product-card-one [product]="data"></app-product-card-one>
-        </ng-template>
-      </swiper>
-    </div>
-
-
-  </div>
-</section><!--END RECOMMENDED SECTION VIEW-->
-
-
-
-<!-- LOADING TEMPLATE -->
-<ngx-spinner style="width: 100vw; height: 100vh" bdColor="rgba(0,0,0,0.25)" size="medium" color="#fff"
-             type="ball-clip-rotate" [fullScreen]="true"><p style="color: white"> Loading... </p></ngx-spinner>
