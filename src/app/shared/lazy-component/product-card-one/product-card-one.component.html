@@ -2,8 +2,8 @@
 <div class="card">
   <!--card-img-->
   <div class="card-img">
-    <a [routerLink]="['/', product?.brandSlug, product?.categorySlug, product?.productSlug]">
-      <!-- <img [defaultImage]="'/assets/images/placeholder/test.png'" [lazyLoad]="product?.images[0]"> -->
+    <a [routerLink]="['/', product?.productSlug]">
+      <img [defaultImage]="'/assets/images/placeholder/test.png'" [lazyLoad]="product?.images[0]">
       <!-- <img src={{product.images[0]}} /> -->
     </a>
   </div>
@@ -18,7 +18,7 @@
    <div class="card-bottom">
      <!--card-price-->
      <div class="card-price">
-       <h4 *ngIf="product && product.price > 0">MRP <del>৳ {{product?.price}}</del> <span> {{product ? (product.discountType) : 0}}% OFF</span></h4>
+       <h4 *ngIf="product && product.price > 0">MRP <h3>৳{{product?.price}}</h3> <span> {{product ? (product.discountType) : 0}}% OFF</span></h4>
        <!-- <h3>৳{{product.prices[0]}}</h3> -->
      </div>
      <!--add-btn-->
