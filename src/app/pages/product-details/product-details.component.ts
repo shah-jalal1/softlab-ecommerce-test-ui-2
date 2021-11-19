@@ -231,6 +231,30 @@
 // }
 
 
+//
+
+///
+
+
+
+
+///
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 
@@ -567,4 +591,3 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     }
   }
 }
-
